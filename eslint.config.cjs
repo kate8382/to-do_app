@@ -2,24 +2,35 @@ const { FlatCompat } = require('@eslint/eslintrc');
 // const path = require('path');
 
 const compat = new FlatCompat({
+
   baseDirectory: __dirname,
+
 });
 
 module.exports = [
+
   ...compat.config({
+
     extends: ['airbnb-base'],
 
     env: {
+
       browser: true, // Для работы с document, window, localStorage
+
       es2021: true, // Для поддержки современных возможностей JavaScript
+
     },
 
     parserOptions: {
+
       ecmaVersion: 'latest',
+
       sourceType: 'module',
+
     },
 
     rules: {
+
       // Разрешить использование консоли
       'no-console': 'off',
 
@@ -42,7 +53,7 @@ module.exports = [
       'no-var': 'error',
 
       // Запретить использование неявного приведения типов
-      'linebreak-style': ['error', 'windows'],
+      'linebreak-style': ['error', 'unix'],
 
       // Пробелы вокруг ключевых слов
       'keyword-spacing': ['error', { before: true, after: true }],
@@ -58,6 +69,9 @@ module.exports = [
 
       // Отключить проверку на использование зависимостей из devDependencies
       'import/no-extraneous-dependencies': 'off',
+
     },
+
   }),
+
 ];

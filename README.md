@@ -1,4 +1,4 @@
-# To-Do List App
+# To-Do App
 
 A simple application for creating a to-do list using JavaScript, HTML, and Bootstrap.
 
@@ -27,7 +27,7 @@ This application allows users to:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/kate8382/to_do_list
+   git clone https://github.com/kate8382/to-do_app
 
 2. Open the index.html file in your browser.
 

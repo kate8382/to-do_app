@@ -37,6 +37,11 @@ module.exports = [
       // Отключить требование именования функций
       'func-names': 'off',
 
+      // Разрешить комментарии
+      'spaced-comment': ['error', 'always'],
+      'no-inline-comments': 'off',
+      'multiline-comment-style': 'off',
+
       // Требовать использование одинарных кавычек
       quotes: ['error', 'single'],
 
@@ -69,6 +74,12 @@ module.exports = [
 
       // Отключить проверку на использование зависимостей из devDependencies
       'import/no-extraneous-dependencies': 'off',
+
+      // Максимальная длина строки 130 символов
+      'max-len': ['error', { code: 130 }],
+
+      // Разрешить изменение свойств параметров функции
+      'no-param-reassign': ['off'],
 
     },
 

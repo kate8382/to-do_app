@@ -16,7 +16,6 @@
     (async () => {
       const todoItemList = await api.getTodoItemList(owner);
       createTodoApp(document.getElementById('todo-app'), {
-        title: 'Дела мамы',
         owner,
         todoItemList,
         onCreateFormSubmit: api.createTodoItem,
@@ -30,9 +29,9 @@
 <body>
   <div class="container mb-5">
     <nav class="nav">
-      <a class="nav-link" href="index.html">Мои дела</a>
-      <a class="nav-link" href="mom.html">Дела мамы</a>
-      <a class="nav-link" href="dad.html">Дела папы</a>
+      <a class="nav-link" href="index.html" id="nav-my-link"></a>
+      <a class="nav-link" href="mom.html" id="nav-mom-link"></a>
+      <a class="nav-link" href="dad.html" id="nav-dad-link"></a>
     </nav>
   </div>
   <div class="container" id="todo-app"></div>

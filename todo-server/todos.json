@@ -1,15 +1,9 @@
 [
   {
-    "id": "1747582124557",
-    "name": "дело 1",
-    "owner": "my",
-    "done": true
-  },
-  {
     "id": "1747582128512",
     "name": "дело 2",
     "owner": "my",
-    "done": false
+    "done": true
   },
   {
     "id": "1747582180751",
@@ -27,6 +21,12 @@
     "id": "1747749491787",
     "name": "task 1",
     "owner": "mom",
+    "done": false
+  },
+  {
+    "id": "1747761566112",
+    "name": "дело 3",
+    "owner": "my",
     "done": false
   }
 ]

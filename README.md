@@ -8,7 +8,7 @@ A simple application for creating a to-do list using JavaScript, HTML, and Boots
 
 ## Demo
 
-You can try the app online (offline mode only) via [GitHub Pages](https://kate8382.github.io/to-do_app/docs/index.html).
+You can try the app online (offline mode only) via [GitHub Pages](https://kate8382.github.io/to-do_app/).
 
 ## Description
 

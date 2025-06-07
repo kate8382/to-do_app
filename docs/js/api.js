@@ -108,3 +108,24 @@ export async function deleteTodoItem({ id, owner }) {
     },
   );
 }
+
+// Получить списки дел для нескольких пользователей параллельно
+export async function getAllTodoLists(owners, delayMs = 0) {
+  // Функция для искусственной задержки
+  function delay(ms) {
+    return new Promise((resolve) => { setTimeout(resolve, ms); });
+  }
+  // Массив промисов для каждого owner
+  const promises = owners.map(async (owner) => {
+    const result = await getTodoItemList(owner);
+    if (delayMs > 0) await delay(delayMs); // искусственная задержка
+    return { owner, todos: result };
+  });
+  // Ждём завершения всех промисов
+  const results = await Promise.all(promises);
+  // Преобразуем в объект { owner: todos }
+  return results.reduce((acc, { owner, todos }) => {
+    acc[owner] = todos;
+    return acc;
+  }, {});
+}

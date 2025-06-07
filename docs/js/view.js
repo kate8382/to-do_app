@@ -70,6 +70,7 @@ function setAppNavText() {
     { id: 'nav-my-link', key: 'title_my' },
     { id: 'nav-mom-link', key: 'title_mom' },
     { id: 'nav-dad-link', key: 'title_dad' },
+    { id: 'nav-all-link', key: 'title_all' },
   ];
   navLinks.forEach((link) => {
     const el = document.getElementById(link.id);
@@ -225,4 +226,13 @@ async function createTodoApp(container, {
   });
 }
 
-export default createTodoApp;
+// Функция для #hash по owner
+function getOwnerFromHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'mom') return 'mom';
+  if (hash === 'dad') return 'dad';
+  if (hash === 'all') return 'all';
+  return 'my';
+}
+
+export { getOwnerFromHash, createTodoApp };

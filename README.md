@@ -1,43 +1,32 @@
 # To-Do App
 
-> ⚠️ **Note:** On GitHub Pages, the app works only in offline mode (localStorage).
-> To use all features (including API and multi-user support), please clone the repository and run the server locally.
-> See instructions in the "How to Run the Project" section.
+> ⚠️ **Note:** On GitHub Pages, the app works only in offline mode (localStorage). To use all features (including API and multi-user support), please clone the repository and run the server locally. See instructions in the "How to Run the Project" section.
 
-A simple application for creating a to-do list using JavaScript, HTML, and Bootstrap.
+A simple modular to-do list application using JavaScript, HTML, and Bootstrap. Supports both offline (localStorage) and online (REST API) modes, multi-user lists, and multilingual interface.
 
 ## Demo
 
 You can try the app online (offline mode only) via [GitHub Pages](https://kate8382.github.io/to-do_app/).
 
-## Description
+## Features
 
-This application allows users to:
-- Create tasks.
-- Mark tasks as completed.
-- Delete tasks.
-- Work with tasks stored both on a backend server (API) and in `localStorage` (offline mode).
-- Automatically synchronize tasks between API and localStorage.
-- Switch between Russian and English interface (language selector in the UI).
-- Use a modular code structure (separate files for view, API, translations).
+- Add, complete, and delete tasks
+- Data is stored both in localStorage (offline) and on a backend server (API)
+- Automatic synchronization between API and localStorage
+- Multilingual interface (Russian/English)
+- Modular code structure (UI, API, translations)
+- Hash-based navigation between user lists (SPA-like)
+- Separate page for viewing all users' lists (for developers/testing)
 
 ## Project Structure
 
-- **index.html, mom.html, dad.html**: Main pages for different to-do lists (My, Mom's, Dad's).
-- **js/view.js**: Module responsible for rendering the UI, handling user interactions, and language switching.
-- **js/api.js**: Module for working with the backend API and localStorage (hybrid logic).
-- **js/i18n.js**: Module with translations and supported languages (for i18n).
-- **js/todo-app.js**: (Optional) Combined logic for demonstration or legacy purposes.
-- **README.md**: Project documentation.
-
-## Technologies Used
-
-- **HTML**: For the structure of the page.
-- **CSS (Bootstrap)**: For styling the interface.
-- **JavaScript (ES6 modules)**: For implementing functionality and modularity.
-- **localStorage**: For saving data on the client side (offline support).
-- **REST API**: For persistent storage and multi-user support.
-- **i18n (Internationalization)**: For supporting multiple languages (RU/EN).
+- **docs/index.html**: Main page for user lists (My, Mom's, Dad's) with hash navigation
+- **docs/all.html**: Developer/testing page for viewing all lists at once
+- **docs/js/view.js**: UI rendering, user interaction, language switching
+- **docs/js/api.js**: API and localStorage logic
+- **docs/js/i18n.js**: Translations and supported languages
+- **todo-server/**: Simple backend server and data storage
+- **README.md**: Project documentation
 
 ## How to Run the Project
 
@@ -52,41 +41,22 @@ This application allows users to:
    ```
 3. Open the `index.html` file in your browser (from the `docs` folder for GitHub Pages compatibility).
 
-## Features
+## Pages and Navigation
 
-1. **Adding tasks:**
-   - Enter the task name in the input field.
-   - Click the "Add Task" button.
+- **index.html** — main user page. Switch between lists (My, Mom's, Dad's) via hash routing (`#my`, `#mom`, `#dad`) without page reloads.
+- **all.html** — view all to-do lists at once (for developers/testing). Can be hidden from users by removing the menu link.
 
-2. **Marking tasks as completed:**
-   - Click the "Done" button next to a task to mark it as completed or uncompleted.
+## Hash Routing (SPA-like Navigation)
 
-3. **Deleting tasks:**
-   - Click the "Delete" button next to a task to remove it.
+Navigation between lists is implemented by changing the hash in the address bar. This allows dynamic loading of the required list without reloading the page.
 
-4. **Saving and synchronizing data:**
-   - All tasks are saved both in localStorage and on the server (API).
-   - If the server is unavailable, the app works in offline mode using localStorage.
-   - When the server becomes available again, data is synchronized automatically.
+## Multilanguage Support
 
-5. **Language switching:**
-   - The interface supports both Russian and English.
-   - You can switch the language at any time using the dropdown at the top of the page.
-   - All UI elements (navigation, buttons, placeholders, confirmations) are translated instantly.
+The interface supports both Russian and English. Language switching works on all pages, including all.html.
 
-6. **Modular code structure:**
-   - The code is split into logical modules: UI (view.js), API (api.js), translations (i18n.js).
-   - Easy to maintain and extend.
+## For Developers
 
-## Navigation
-
-The application supports multiple to-do lists:
-
-* **My Tasks**
-* **Mom's Tasks**
-* **Dad's Tasks**
-
-You can switch between lists using the navigation menu. Each list is stored and synchronized separately.
+The all.html page is intended for developers and testers. It allows you to see all to-do lists at once and can be hidden from regular users (for example, by removing the link from the menu).
 
 ## Screenshots
 
@@ -95,6 +65,14 @@ Below you can see both the user interface and the developer tools (showing local
 ![Screenshot 1](screenshots/image1.png)
 ![Screenshot 2](screenshots/image2.png)
 ![Screenshot 3](screenshots/image3.png)
+![Screenshot 3](screenshots/image4.png)
+
+## Example Navigation
+
+- `index.html#my` — My Tasks
+- `index.html#mom` — Mom's Tasks
+- `index.html#dad` — Dad's Tasks
+- `all.html` — All to-do lists (for developers)
 
 ## License
 

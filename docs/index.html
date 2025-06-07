@@ -9,19 +9,34 @@
     integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
   <script type="module">
-    import createTodoApp from './js/view.js';
-    import { getTodoItemList, createTodoItem, toggleTodoItem, deleteTodoItem } from './js/api.js';
+    import { getOwnerFromHash, createTodoApp } from './js/view.js';
+    import { getTodoItemList, createTodoItem, toggleTodoItem, deleteTodoItem, getAllTodoLists } from './js/api.js';
 
-    const owner = 'my';
+    const container = document.getElementById('todo-app');
+    async function renderTodoApp() {
+      container.innerHTML = '';
+      const owner = getOwnerFromHash();
+      if (owner && owner !== 'all') {
+        const todoItemList = await getTodoItemList(owner);
+        createTodoApp(container, {
+          owner: owner,
+          todoItemList: todoItemList,
+          onCreateFormSubmit: createTodoItem,
+          onDoneClick: toggleTodoItem,
+          onDeleteClick: deleteTodoItem,
+        });
+      }
+    }
+
+    window.addEventListener('hashchange', renderTodoApp);
+    window.addEventListener('DOMContentLoaded', renderTodoApp);
+
+    // Пример для разработчика: посмотреть все списки в консоли
+    const owners = ['my', 'mom', 'dad'];
     (async () => {
-      const todoItemList = await getTodoItemList(owner);
-      createTodoApp(document.getElementById('todo-app'), {
-        owner,
-        todoItemList,
-        onCreateFormSubmit: createTodoItem,
-        onDoneClick: toggleTodoItem,
-        onDeleteClick: deleteTodoItem,
-      })
+      const allLists = await getAllTodoLists(owners, 500); // 500мс задержка для наглядности
+      const allListsArr = Object.entries(allLists).map(([owner, todos]) => ({ owner, todos }));
+      console.log(allListsArr);
     })();
   </script>
 </head>
@@ -29,9 +44,10 @@
 <body>
   <div class="container mb-5">
     <nav class="nav">
-      <a class="nav-link" href="index.html" id="nav-my-link"></a>
-      <a class="nav-link" href="mom.html" id="nav-mom-link"></a>
-      <a class="nav-link" href="dad.html" id="nav-dad-link"></a>
+      <a class="nav-link" href="#my" id="nav-my-link"></a>
+      <a class="nav-link" href="#mom" id="nav-mom-link"></a>
+      <a class="nav-link" href="#dad" id="nav-dad-link"></a>
+      <a class="nav-link" href="all.html" id="nav-all-link"></a>
     </nav>
   </div>
   <div class="container" id="todo-app"></div>

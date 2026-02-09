@@ -37,6 +37,7 @@ You can try the app online (offline mode only) via [GitHub Pages](https://kate83
 2. Start the server (if required):
    ```powershell
    cd to-do_app/todo-server
+   # Node.js required (recommended version: 14+)
    node index.js
    ```
 3. Open the `index.html` file in your browser (from the `docs` folder for GitHub Pages compatibility).

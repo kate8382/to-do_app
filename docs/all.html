@@ -11,22 +11,37 @@
     import { getAllTodoLists, createTodoItem, toggleTodoItem, deleteTodoItem } from './js/api.js';
 
     const owners = ['my', 'mom', 'dad'];
+    // Предотвращаем навигацию по ссылкам, пока идет загрузка
+    let loading = true;
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.nav-link'); // ловим и запрещаем клики по nav-ссылкам во время загрузки
+      if (!link) return;
+      if (loading) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
     (async () => {
-      const allLists = await getAllTodoLists(owners, 500); // 500мс задержка для наглядности
-      const container = document.getElementById('all-todo-apps');
-      owners.forEach(owner => {
-        const section = document.createElement('section');
-        section.classList.add('mb-5', 'p-3', 'border', 'rounded', 'shadow-sm');
-        section.id = `todo-app-${owner}`;
-        container.append(section);
-        createTodoApp(section, {
-          owner,
-          todoItemList: allLists[owner],
-          onCreateFormSubmit: createTodoItem,
-          onDoneClick: toggleTodoItem,
-          onDeleteClick: deleteTodoItem,
+      try {
+        const allLists = await getAllTodoLists(owners, 500); // 500мс задержка для наглядности
+        const container = document.getElementById('all-todo-apps');
+        owners.forEach(owner => {
+          const section = document.createElement('section');
+          section.classList.add('mb-5', 'p-3', 'border', 'rounded', 'shadow-sm');
+          section.id = `todo-app-${owner}`;
+          container.append(section);
+          createTodoApp(section, {
+            owner,
+            todoItemList: allLists[owner],
+            onCreateFormSubmit: createTodoItem,
+            onDoneClick: toggleTodoItem,
+            onDeleteClick: deleteTodoItem,
+          });
         });
-      });
+      } finally {
+        loading = false;
+      }
     })();
   </script>
 </head>
@@ -34,9 +49,9 @@
 <body>
   <div class="container mb-5">
     <nav class="nav">
-      <a class="nav-link" href="index.html" id="nav-my-link"></a>
-      <a class="nav-link" href="index.html" id="nav-mom-link"></a>
-      <a class="nav-link" href="index.html" id="nav-dad-link"></a>
+      <a class="nav-link" id="nav-my-link" href="index.html"></a>
+      <a class="nav-link" id="nav-mom-link" href="index.html"></a>
+      <a class="nav-link" id="nav-dad-link" href="index.html"></a>
       <a class="nav-link font-weight-bold text-primary" href="all.html"></a>
     </nav>
   </div>

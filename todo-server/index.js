@@ -105,8 +105,10 @@ server.listen(PORT, () => {
   console.log('Нажмите Ctrl+C, чтобы остановить сервер.');
   console.log('Доступные методы:');
   console.log('GET /api/todos - получить список дел, query параметр owner фильтрует по владельцу');
+  // eslint-disable-next-line max-len
   console.log('POST /api/todos - создать дело, в теле запроса нужно передать объект { name: string, owner: string, done?: boolean }');
   console.log('GET /api/todos/{id} - получить дело по его ID');
+  // eslint-disable-next-line max-len
   console.log('PATCH /api/todos/{id} - изменить дело с ID, в теле запроса нужно передать объект { name?: string, owner?: string, done?: boolean }');
   console.log('DELETE /api/todos/{id} - удалить дело по ID');
 });

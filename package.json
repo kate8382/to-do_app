@@ -5,8 +5,8 @@
     "lint": "eslint ./",
     "lint:report": "eslint --format stylish ./"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ecaterina Sevciuc",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "eslint": "^8.57.1",
